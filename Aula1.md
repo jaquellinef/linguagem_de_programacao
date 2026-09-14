@@ -18,12 +18,12 @@ tipo_dado função main(lista de parâmetros) {
 tipo_dado função1(lista de parâmetros) {
     Bloco de comandos;
 }
-# Comentários
+## Comentários
 // → comentário de linha
 
 /* ... */ → comentário de bloco
 
-# 🔢 Tipos básicos de dados
+##  🔢 Tipos básicos de dados
 char → caractere
 
 int → inteiro
@@ -34,7 +34,7 @@ double → ponto flutuante de precisão dupla
 
 void → sem valor
 
-# Operadores
+## Operadores
 + soma
 
 - subtração
@@ -45,13 +45,13 @@ void → sem valor
 
 % resto da divisão
 
-# Incremento e Decremento
+##  Incremento e Decremento
 ++x;   // pré-incremento
 x++;   // pós-incremento
 --x;   // pré-decremento
 x--;   // pós-decremento
 
-# 🔗 Operadores relacionais
+##  🔗 Operadores relacionais
 == igual
 
 > maior
@@ -71,13 +71,13 @@ x--;   // pós-decremento
 
 ! → NOT
 
-##🖥️ Entrada e Saída
+## 🖥️ Entrada e Saída
 #printf()
 printf("A média é: %.2f", media);
 #scanf()
 scanf("%f", &n1);
 
-##🎨 Impressão de códigos especiais
+## 🎨 Impressão de códigos especiais
 \n → nova linha
 
 \t → tabulação
@@ -94,19 +94,19 @@ scanf("%f", &n1);
 
 %% → símbolo %
 
-##🔧 Casas decimais
+## 🔧 Casas decimais
 printf("Default: %f \n", 3.1415169265);
 printf("Uma casa: %.1f \n", 3.1415169265);
 printf("Duas casas: %.2f \n", 3.1415169265);
 printf("Três casas: %.3f \n", 3.1415169265);
 printf("Notação Científica: %e \n", 3.1415169265);
 
-##🏁 Função main
+## 🏁 Função main
 int main() {
     printf("olá mundo");
 }
 
-##🇧🇷 Acentuação
+## 🇧🇷 Acentuação
 #include <stdio.h>
 #include <locale.h>
 int main() {
