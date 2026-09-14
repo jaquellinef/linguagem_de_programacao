@@ -18,12 +18,12 @@ tipo_dado função main(lista de parâmetros) {
 tipo_dado função1(lista de parâmetros) {
     Bloco de comandos;
 }
-## Comentários
+# Comentários
 // → comentário de linha
 
 /* ... */ → comentário de bloco
 
-## 🔢 Tipos básicos de dados
+# 🔢 Tipos básicos de dados
 char → caractere
 
 int → inteiro
@@ -34,7 +34,7 @@ double → ponto flutuante de precisão dupla
 
 void → sem valor
 
-## Operadores
+# Operadores
 + soma
 
 - subtração
@@ -45,13 +45,13 @@ void → sem valor
 
 % resto da divisão
 
-## Incremento e Decremento
+# Incremento e Decremento
 ++x;   // pré-incremento
 x++;   // pós-incremento
 --x;   // pré-decremento
 x--;   // pós-decremento
 
-## 🔗 Operadores relacionais
+# 🔗 Operadores relacionais
 == igual
 
 > maior
@@ -64,7 +64,7 @@ x--;   // pós-decremento
 
 != diferente
 
-##⚙️ Operadores lógicos
+#⚙️ Operadores lógicos
 && → AND
 
 || → OR
@@ -72,9 +72,9 @@ x--;   // pós-decremento
 ! → NOT
 
 ##🖥️ Entrada e Saída
-printf()
+#printf()
 printf("A média é: %.2f", media);
-scanf()
+#scanf()
 scanf("%f", &n1);
 
 ##🎨 Impressão de códigos especiais
