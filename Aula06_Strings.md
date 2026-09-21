@@ -9,31 +9,23 @@
 ## 🧠 Mapa Mental do Conteúdo
 
 ```mermaid
-mindmap
-  root((Strings em C))
-    Biblioteca string.h
-      Comparacao
-        strcmp
-      Copia
-        strcpy
-      Tamanho
-        strlen
-      Concatenacao
-        strcat
-      Busca e Indice
-        strcspn
-      Conversao Windows
-        strupr
-        strlwr
-    Biblioteca ctype.h
-      toupper
-      tolower
-    Buffer de Entrada
-      Problema
-        scanf deixa enter no buffer
-      Solucao
-        "fflush(stdin)"
-        "getchar()"
+graph TD
+    A["🔤 Strings em C"] --> B["📚 Biblioteca <string.h>"]
+    A --> C["🔤 Biblioteca <ctype.h>"]
+    A --> D["⚠️ Buffer de Entrada"]
+
+    B --> B1["strcmp() - Compara"]
+    B --> B2["strcpy() - Copia"]
+    B --> B3["strlen() - Tamanho"]
+    B --> B4["strcat() - Concatena"]
+    B --> B5["strcspn() - Busca e Índice"]
+    B --> B6["strupr() / strlwr() - Caixa (Windows)"]
+
+    C --> C1["toupper() - Maiúscula"]
+    C --> C2["tolower() - Minúscula"]
+
+    D --> D1["Problema: scanf() deixa ENTER no buffer"]
+    D --> D2["Solução: fflush(stdin) ou getchar()"]
 ```
 
 ---
@@ -57,28 +49,30 @@ mindmap
 ## 🛠️ Detalhamento das Funções
 
 ### 1. 🔍 Comparação de Strings (`strcmp`)
+
 A função `strcmp(s1, s2)` compara duas strings caractere por caractere segundo a ordem alfabética (tabela ASCII).
 
 ```mermaid
 flowchart LR
-    A[strcmp s1, s2] --> B{Resultado?}
-    B -- Retorna 0 --> C[Strings são IDÊNTICAS]
-    B -- Retorna < 0 --> D[s1 vem ANTES de s2 na ordem alfabética]
-    B -- Retorna > 0 --> E[s1 vem DEPOIS de s2 na ordem alfabética]
+    A["strcmp(s1, s2)"] --> B{"Resultado?"}
+    B -- "Retorna 0" --> C["Strings são IDÊNTICAS"]
+    B -- "Retorna < 0" --> D["s1 vem ANTES na ordem alfabética"]
+    B -- "Retorna > 0" --> E["s1 vem DEPOIS na ordem alfabética"]
 ```
 
 ---
 
 ### 2. 📋 Copiando e Concatenando (`strcpy` e `strcat`)
 
-- **`strcpy(destino, origem)`**: Copia o texto de `origem` para a variável `destino`.
-- **`strcat(destino, origem)`**: Adiciona o texto de `origem` no final de `destino`.
+* **`strcpy(destino, origem)`**: Copia o texto de `origem` para a variável `destino`.
+* **`strcat(destino, origem)`**: Adiciona o texto de `origem` no final de `destino`.
 
 > ⚠️ **Atenção:** Certifique-se de que a string de destino possui espaço suficiente para armazenar o resultado.
 
 ---
 
 ### 3. 🎯 Removendo o `\n` do `fgets` (`strcspn`)
+
 A função `fgets()` lê a quebra de linha `\n` gerada ao pressionar a tecla `ENTER`. Para remover esse `\n` indesejado e substituir por `\0` (fim de string), usamos:
 
 ```c
@@ -88,7 +82,8 @@ nome[strcspn(nome, "\n")] = '\0';
 ---
 
 ### 4. 🔠 Conversão entre Maiúsculas e Minúsculas (`<ctype.h>`)
-Como as funções `strupr()` e `strlwr()` não são portáveis (não pertencem ao padrão ANSI C), a boa prática é percorrer a string caractere por caractere utilizando `toupper()` ou `tolower()`:
+
+Como as funções `strupr()` e `strlwr()` não pertencem ao padrão ANSI C (são exclusivas de alguns compiladores Windows), a boa prática é utilizar `toupper()` ou `tolower()` percorrendo caractere a caractere:
 
 ```c
 void para_maiusculas(char *s) {
@@ -104,7 +99,7 @@ void para_maiusculas(char *s) {
 
 ## ⚠️ Problema do Buffer de Entrada (`scanf` + `fgets`)
 
-Quando utilizamos `scanf("%d", &idade)`, o número digitado é lido, mas a tecla **ENTER** (`\n`) permanece no **buffer de entrada**.
+Quando utilizamos `scanf("%d", &idade)`, o número digitado é lido, mas o caractere da tecla **ENTER** (`\n`) permanece no **buffer de entrada**.
 
 ```mermaid
 sequenceDiagram
@@ -115,20 +110,22 @@ sequenceDiagram
 
     U->>B: Digita "25" + ENTER
     C->>B: scanf("%d", &idade) lê "25"
-    Note over B: O caractere '\n' (ENTER) permanece no buffer!
+    Note over B: O caractere ENTER permanece no buffer!
     C->>B: fgets(nome, sizeof(nome), stdin)
-    Note over C: fgets lê o '\n' restante instantaneamente<br/>e pula a leitura do nome!
+    Note over C: fgets lê o ENTER restante instantaneamente<br/>e pula a leitura do nome!
 ```
 
 ### ✅ Solução para Limpeza de Buffer:
+
 * **No Windows:** `fflush(stdin);`
-* **Portável (Linux/macOS/Windows):** `getchar();` ou `fpurge(stdin);`
+* **Portável (Linux / macOS / Windows):** `getchar();` ou `fpurge(stdin);`
 
 ---
 
 ## 💻 Exemplos de Código Práticos
 
 ### Exemplo 1: Comparando duas Palavras
+
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -154,9 +151,8 @@ int main() {
 }
 ```
 
----
-
 ### Exemplo 2: Concatenação Correta com Remoção de `\n`
+
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -184,7 +180,7 @@ int main() {
 
 ## 📝 Lista de Exercícios
 
-| # | Título do Exercício | Descrição do Problema |
+| \# | Título do Exercício | Descrição do Problema |
 | :---: | :--- | :--- |
 | **1** | 🔍 Busca em Vetor | Leia 15 nomes de pessoas e armazene num vetor. Permita buscar nomes repetidamente até que seja digitado `"FIM"`. |
 | **2** | 📊 Contador de Caractere | Leia uma string e um caractere. Conte e exiba quantas vezes esse caractere aparece na string. |
